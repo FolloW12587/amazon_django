@@ -23,3 +23,5 @@ traitlets==4.3.2
 urllib3==1.25.6
 wcwidth==0.1.7
 python-dotenv==0.15.0
+django-filter==2.4.0
+django-admin-list-filter-dropdown==1.0.3
