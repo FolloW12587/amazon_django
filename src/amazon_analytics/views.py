@@ -10,4 +10,4 @@ def upload(request):
 
 @login_required
 def index(request):
-    return HttpResponse("Hello, world! This is a page for download report form.")
+    return HttpResponse("Hello, {user}! This is a page for download report form.".format(user=request.user))

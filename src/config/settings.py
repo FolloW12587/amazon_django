@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from dotenv import load_dotenv
 import os
 
@@ -26,6 +27,7 @@ ALLOWED_HOSTS = ['amazonanalytics.loc']
 
 INSTALLED_APPS = [
     'amazon_analytics.apps.AmazonAnalyticsConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -113,6 +115,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOGIN_REDIRECT_URL = reverse_lazy('analytics')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
 
 
 # Static files (CSS, JavaScript, Images)
