@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "amazon_analytics/css/base.css" %}" rel="stylesheet">
+    <link href="{% static "amazon_analytics/css/widgets.css" %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static "amazon_analytics/js/globals.js" %}"></script>
+    <script type="text/javascript" src="{% static "amazon_analytics/js/core.js" %}"></script>
+    <script type="text/javascript" src="{% static "amazon_analytics/js/calendar.js" %}"></script>
+    <script type="text/javascript" src="{% static "amazon_analytics/js/DateTimeShortcuts.js" %}"></script>
+</head>
+<body>
+<div id="header">
+    <span class="logo">Amazon analytics</span>
+    <span class="user-tools">
+        Welcome <strong>{{ request.user }}</strong> / {% if request.user.is_staff %}<a href='/admin'>Go to admin panel</a> / {% endif %} <a href="{% url "logout" %}">Logout</a>
+    </span>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

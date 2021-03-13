@@ -130,3 +130,6 @@ dmypy.json
 
 #gunicorn socket file
 *.sock
+
+#vscode configurations
+*.vscode/*

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Загрузить отчет{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="login-header">
+            <h1 class="login-header__header">Загрузить отчет</h1>
+        </div>
+        <div class="login-form">
+            <form action="" enctype="multipart/form-data" method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}"/>
+                <p class='submit-row'><input type="submit" value="Загрузить"></p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
