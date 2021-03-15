@@ -2,10 +2,10 @@
 {% block title %}Загрузить отчет{% endblock %}
 {% block content %}
     <div class="container">
-        <div class="upload-header">
-            <h1 class="upload-header__header">Загрузить отчет</h1>
+        <div class="get_report-header">
+            <h1 class="get_report-header__header">Получить отчет</h1>
         </div>
-        <div class="upload-form">
+        <div class="get_report-form">
             <form action="" enctype="multipart/form-data" method="post">
                 {{ form.as_p }}
                 {% csrf_token %}
@@ -13,4 +13,7 @@
             </form>
         </div>
     </div>
+    <script>
+        window.date_limits = JSON.parse("{{ date_limits|escapejs }}");
+    </script>
 {% endblock %}

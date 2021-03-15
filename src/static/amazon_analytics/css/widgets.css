@@ -426,6 +426,16 @@ span.clearable-file-input label {
     font-weight: 700;
 }
 
+.calendar td.disabled a{
+    color: #ccc;
+}
+
+.calendar td.disabled a:hover, .calendar td.disabled a:focus{
+    color: #ccc;
+    background: #fff;
+    cursor: default;
+}
+
 .calendar td a, .timelist a {
     display: block;
     font-weight: 400;

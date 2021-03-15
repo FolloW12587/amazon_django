@@ -404,9 +404,12 @@
                 .replace('\t', '\\t')
                 .replace("'", "\\'");
             return function(y, m, d) {
-                DateTimeShortcuts.calendarInputs[num].value = new Date(y, m - 1, d).strftime(format);
-                DateTimeShortcuts.calendarInputs[num].focus();
-                document.getElementById(DateTimeShortcuts.calendarDivName1 + num).style.display = 'none';
+                var date_str = new Date(y, m - 1, d).strftime(format);
+                if (window.date_limits.indexOf(date_str) > -1){
+                    DateTimeShortcuts.calendarInputs[num].value = date_str;
+                    DateTimeShortcuts.calendarInputs[num].focus();
+                    document.getElementById(DateTimeShortcuts.calendarDivName1 + num).style.display = 'none';
+                }
             };
         },
         handleCalendarQuickLink: function(num, offset) {

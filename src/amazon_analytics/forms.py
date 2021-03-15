@@ -6,7 +6,7 @@ from . import models
 import datetime
 
 
-class GetReportFrom(forms.Form):
+class UploadReportFrom(forms.Form):
     name = forms.CharField(label='Название отчета', max_length=255)
     period_date = forms.DateField(label='Дата отчетного периода', initial=datetime.date.today, widget=AdminDateWidget)
     report_file = forms.FileField(label='Файл с данными')
@@ -17,3 +17,15 @@ class GetReportFrom(forms.Form):
             raise ValidationError('File with such name is already in database')
 
         return name
+
+
+class GetReportForm(forms.Form):
+    period_date_start = forms.DateField(label='Начало периода для отчета', initial=models.Reports.objects.order_by('-period_date').first().period_date, widget=AdminDateWidget)
+    period_date_end = forms.DateField(label='Конец периода для отчета', initial=models.Reports.objects.order_by('-period_date').first().period_date, widget=AdminDateWidget)
+    limit = forms.IntegerField(label="Количество строк в отчете", initial=100, min_value=10, max_value=10000)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data['period_date_start'] > cleaned_data['period_date_end']:
+            raise ValidationError('Start date must be less or equal to end date')
+
