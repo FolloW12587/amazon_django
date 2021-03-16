@@ -6,7 +6,7 @@ After=network.target
 User=www-data
 Group=www-data
 WorkingDirectory=/home/follow/amazon_django/src
-ExecStart=/home/follow/amazon_django/env/bin/gunicorn --workers 5 --bind unix:/home/follow/amazon_django/gunicorn/gunicorn.sock config.wsgi:application --access-logfile /home/follow/amazon_django/gunicorn/access.log --error-logfile /home/follow/amazon_django/gunicorn/error.log
+ExecStart=/home/follow/amazon_django/env/bin/gunicorn --workers 5 --bind unix:/home/follow/amazon_django/gunicorn/gunicorn.sock config.wsgi:application --access-logfile /home/follow/amazon_django/gunicorn/access.log --error-logfile /home/follow/amazon_django/gunicorn/error.log --timeout 300
 Restart=on-failure
 
 [Install]

@@ -13,8 +13,7 @@ def upload(request):
         form = forms.UploadReportFrom(request.POST, request.FILES)
         if form.is_valid():
             cd = form.cleaned_data
-            reports.handle_uploaded_file(cd['report_file'], cd['name'])
-            return HttpResponse(str(cd))
+            return reports.handle_uploaded_file(cd['report_file'], cd['name'], cd['period_date'], request.user)
     else:
         form = forms.UploadReportFrom()
     return render(request, 'amazon_analytics/upload.html', {'form': form})

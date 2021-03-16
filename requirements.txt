@@ -25,3 +25,4 @@ wcwidth==0.1.7
 python-dotenv==0.15.0
 django-filter==2.4.0
 django-admin-list-filter-dropdown==1.0.3
+django-postgres-copy==2.5.0

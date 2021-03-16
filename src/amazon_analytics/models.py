@@ -1,10 +1,11 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
+from postgres_copy import CopyManager
 
 
 class Reports(models.Model):
     id = models.AutoField("id", primary_key=True)
-    period_date = models.DateField("Дата отчетного периода")
+    period_date = models.DateField("Дата отчетного периода", unique=True)
     name = models.CharField("Название отчета", blank=True, null=True, max_length=255)
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Загружено пользователем', on_delete=models.CASCADE)
     uploaded_date = models.DateTimeField("Дата загрузки", auto_now_add=True)
@@ -41,3 +42,12 @@ class RequestTops(models.Model):
         
     def __str__(self):
         return '[{pos}] {req}'.format(pos=self.position, req=self.request.request)
+
+
+class TemporaryRequestTops(models.Model):
+    id = models.AutoField("id", primary_key=True)
+    request = models.CharField('Запрос', max_length=255)
+    position = models.IntegerField('Позиция запроса')
+    report_id = models.IntegerField('ID отчета')
+
+    objects = CopyManager()

@@ -120,11 +120,13 @@ depends on core.js for utility functions like removeChildren or quickElement
                     todayClass = '';
                 }
 
-                var month_str = String(month).length > 1 ? String(month) : '0'+String(month);
-                var currentDay_str = String(currentDay).length > 1 ? String(currentDay) : '0'+String(currentDay);
-                var todayStr = String(year) + '-' + month_str + '-' + currentDay_str;
-                if (window.date_limits.indexOf(todayStr) < 0){
-                    todayClass += ' disabled';
+                if (window.date_limits !== undefined){
+                    var month_str = String(month).length > 1 ? String(month) : '0'+String(month);
+                    var currentDay_str = String(currentDay).length > 1 ? String(currentDay) : '0'+String(currentDay);
+                    var todayStr = String(year) + '-' + month_str + '-' + currentDay_str;
+                    if (window.date_limits.indexOf(todayStr) < 0){
+                        todayClass += ' disabled';
+                    }
                 }
                 
                 // use UTC function; see above for explanation.
