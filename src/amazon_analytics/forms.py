@@ -30,7 +30,7 @@ class GetReportForm(forms.Form):
         initial=(models.Reports.objects.order_by('-period_date').first().period_date if models.Reports.objects.order_by('-period_date').first() != None else datetime.date.today), widget=AdminDateWidget)
     period_date_end = forms.DateField(label='Конец периода для отчета', \
         initial=(models.Reports.objects.order_by('-period_date').first().period_date  if models.Reports.objects.order_by('-period_date').first() != None else datetime.date.today), widget=AdminDateWidget)
-    limit = forms.IntegerField(label="Количество строк в отчете", initial=100, min_value=10, max_value=10000)
+    limit = forms.IntegerField(label="Количество строк в отчете", initial=100, min_value=0, max_value=1000000)
 
     def clean(self):
         cleaned_data = super().clean()

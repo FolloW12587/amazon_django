@@ -49,5 +49,6 @@ class TemporaryRequestTops(models.Model):
     request = models.CharField('Запрос', max_length=255)
     position = models.IntegerField('Позиция запроса')
     report_id = models.IntegerField('ID отчета')
+    user_id = models.IntegerField('ID пользователя')
 
     objects = CopyManager()

@@ -9,7 +9,7 @@ class ReportsAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'period_date', 'uploaded_by', 'uploaded_date')
     date_hierarchy = 'period_date'
 
-    search_fields = ('id', 'name', 'period_date', 'uploaded_by')
+    search_fields = ('name', 'period_date', 'uploaded_by')
     list_filter = (('uploaded_by', RelatedDropdownFilter),)
 
 
@@ -17,12 +17,12 @@ class ReportsAdmin(admin.ModelAdmin):
 class RequestsAdmin(admin.ModelAdmin):
     list_display = ('id', 'request')
 
-    search_fields = ('id', 'request')
+    search_fields = ('request',)
 
 
 @admin.register(models.RequestTops)
 class RequestTopsAdmin(admin.ModelAdmin):
     list_display = ('id', 'request', 'report', 'position')
 
-    search_fields = ('id', 'request', 'report')
+    search_fields = ('request__request__exact', 'report__name')
     list_filter = (('report', RelatedDropdownFilter),)

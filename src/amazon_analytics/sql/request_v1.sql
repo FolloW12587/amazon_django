@@ -38,4 +38,4 @@ FROM
 	ON tops1.request_id=req.id or topssd.request_id=req.id 
 ) wrapper
 ORDER BY abs_diff desc
-LIMIT %s;
+LIMIT {limit};
