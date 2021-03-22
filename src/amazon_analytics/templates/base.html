@@ -17,6 +17,10 @@
         Welcome <strong>{{ request.user }}</strong> / {% if request.user.is_staff %}<a href='/admin'>Go to admin panel</a> / {% endif %} <a href="{% url "logout" %}">Logout</a>
     </span>
 </div>
+<div class="breadcrumbs">
+    <a href="/">Получить отчет</a>
+    / <a href="/upload">Загрузить отчет</a>
+</div>
 <div id="content">
     {% block content %}
     {% endblock %}

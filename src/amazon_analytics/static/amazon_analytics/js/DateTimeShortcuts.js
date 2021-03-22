@@ -240,13 +240,13 @@
             var shortcuts_span = document.createElement('span');
             shortcuts_span.className = DateTimeShortcuts.shortCutsClass;
             inp.parentNode.insertBefore(shortcuts_span, inp.nextSibling);
-            var today_link = document.createElement('a');
-            today_link.setAttribute('href', '#');
-            today_link.appendChild(document.createTextNode(gettext('Today')));
-            today_link.addEventListener('click', function(e) {
-                e.preventDefault();
-                DateTimeShortcuts.handleCalendarQuickLink(num, 0);
-            });
+            // var today_link = document.createElement('a');
+            // today_link.setAttribute('href', '#');
+            // today_link.appendChild(document.createTextNode(gettext('Today')));
+            // today_link.addEventListener('click', function(e) {
+            //     e.preventDefault();
+            //     DateTimeShortcuts.handleCalendarQuickLink(num, 0);
+            // });
             var cal_link = document.createElement('a');
             cal_link.setAttribute('href', '#');
             cal_link.id = DateTimeShortcuts.calendarLinkName + num;
@@ -262,8 +262,8 @@
                 'title', gettext('Choose a Date')
             );
             shortcuts_span.appendChild(document.createTextNode('\u00A0'));
-            shortcuts_span.appendChild(today_link);
-            shortcuts_span.appendChild(document.createTextNode('\u00A0|\u00A0'));
+            // shortcuts_span.appendChild(today_link);
+            // shortcuts_span.appendChild(document.createTextNode('\u00A0|\u00A0'));
             shortcuts_span.appendChild(cal_link);
 
             // Create calendarbox div.
@@ -314,25 +314,25 @@
             DateTimeShortcuts.calendars[num].drawCurrent();
 
             // calendar shortcuts
-            var shortcuts = quickElement('div', cal_box);
-            shortcuts.className = 'calendar-shortcuts';
-            var day_link = quickElement('a', shortcuts, gettext('Yesterday'), 'href', '#');
-            day_link.addEventListener('click', function(e) {
-                e.preventDefault();
-                DateTimeShortcuts.handleCalendarQuickLink(num, -1);
-            });
-            shortcuts.appendChild(document.createTextNode('\u00A0|\u00A0'));
-            day_link = quickElement('a', shortcuts, gettext('Today'), 'href', '#');
-            day_link.addEventListener('click', function(e) {
-                e.preventDefault();
-                DateTimeShortcuts.handleCalendarQuickLink(num, 0);
-            });
-            shortcuts.appendChild(document.createTextNode('\u00A0|\u00A0'));
-            day_link = quickElement('a', shortcuts, gettext('Tomorrow'), 'href', '#');
-            day_link.addEventListener('click', function(e) {
-                e.preventDefault();
-                DateTimeShortcuts.handleCalendarQuickLink(num, +1);
-            });
+            // var shortcuts = quickElement('div', cal_box);
+            // shortcuts.className = 'calendar-shortcuts';
+            // var day_link = quickElement('a', shortcuts, gettext('Yesterday'), 'href', '#');
+            // day_link.addEventListener('click', function(e) {
+            //     e.preventDefault();
+            //     DateTimeShortcuts.handleCalendarQuickLink(num, -1);
+            // });
+            // shortcuts.appendChild(document.createTextNode('\u00A0|\u00A0'));
+            // day_link = quickElement('a', shortcuts, gettext('Today'), 'href', '#');
+            // day_link.addEventListener('click', function(e) {
+            //     e.preventDefault();
+            //     DateTimeShortcuts.handleCalendarQuickLink(num, 0);
+            // });
+            // shortcuts.appendChild(document.createTextNode('\u00A0|\u00A0'));
+            // day_link = quickElement('a', shortcuts, gettext('Tomorrow'), 'href', '#');
+            // day_link.addEventListener('click', function(e) {
+            //     e.preventDefault();
+            //     DateTimeShortcuts.handleCalendarQuickLink(num, +1);
+            // });
 
             // cancel bar
             var cancel_p = quickElement('p', cal_box);

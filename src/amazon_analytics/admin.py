@@ -24,5 +24,11 @@ class RequestsAdmin(admin.ModelAdmin):
 class RequestTopsAdmin(admin.ModelAdmin):
     list_display = ('id', 'request', 'report', 'position')
 
-    search_fields = ('request__request__exact', 'report__name')
+    search_fields = ['request__request__exact']
     list_filter = (('report', RelatedDropdownFilter),)
+
+    def get_search_results(self, request, queryset, search_term):
+        if search_term == None or search_term == '':
+            return super(RequestTopsAdmin, self).get_search_results(request, queryset, search_term)
+        queryset = self.model.objects.filter(request__request__exact=search_term)
+        return queryset, True

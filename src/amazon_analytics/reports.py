@@ -46,7 +46,7 @@ def handle_uploaded_file(f, name, period_date, user):
         
 
 def get_report(date_from, date_to, limit):
-    sql_file = os.path.join(settings.BASE_DIR, r'amazon_analytics/sql/request_v1.sql')
+    sql_file = os.path.join(settings.BASE_DIR, r'amazon_analytics/sql/request_v2.sql')
     if not os.path.exists(sql_file):
         return HttpResponse("Error! Can't find sql request")
     
@@ -54,9 +54,10 @@ def get_report(date_from, date_to, limit):
     response['Content-Disposition'] = 'attachment; filename="report.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Запрос', date_from, date_to, "Изменение позиции", "Абсолютное изменение позиции"])
+    writer.writerow(['Запрос', date_from, date_to, "Минимальная позиция", "Максимальная позиция",\
+        "Разница между мин и макс", "Изменение позиции", "Абсолютное изменение позиции"])
 
-    params_list = [date_from, date_to]
+    params_list = [date_from, date_to]*3
     with connection.cursor() as cursor:
         with open(sql_file, 'r') as r:
             if limit == 0:

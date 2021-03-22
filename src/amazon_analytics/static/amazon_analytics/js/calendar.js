@@ -109,6 +109,10 @@ depends on core.js for utility functions like removeChildren or quickElement
             }
 
             // Draw days of month
+
+            if (window.date_limits_case == '7'){
+                window.date_limits = [];
+            }
             var currentDay = 1;
             for (i = startingPos; currentDay <= days; i++) {
                 if (i % 7 === 0 && currentDay !== 1) {
@@ -120,12 +124,25 @@ depends on core.js for utility functions like removeChildren or quickElement
                     todayClass = '';
                 }
 
-                if (window.date_limits !== undefined){
-                    var month_str = String(month).length > 1 ? String(month) : '0'+String(month);
-                    var currentDay_str = String(currentDay).length > 1 ? String(currentDay) : '0'+String(currentDay);
-                    var todayStr = String(year) + '-' + month_str + '-' + currentDay_str;
+                var format = get_format('DATE_INPUT_FORMATS')[0];
+                // the format needs to be escaped a little
+                format = format.replace('\\', '\\\\')
+                    .replace('\r', '\\r')
+                    .replace('\n', '\\n')
+                    .replace('\t', '\\t')
+                    .replace("'", "\\'");
+
+                if (window.date_limits_case == 'exact' && window.date_limits !== undefined){
+                    var todayStr = new Date(year, month - 1, currentDay).strftime(format);
                     if (window.date_limits.indexOf(todayStr) < 0){
                         todayClass += ' disabled';
+                    }
+                } else if (window.date_limits_case == '7'){
+                    if (i%7 !== 6){
+                        todayClass += ' disabled';
+                    } else {
+                        var date_str = new Date(year, month - 1, currentDay).strftime(format);
+                        window.date_limits.push(date_str);
                     }
                 }
                 

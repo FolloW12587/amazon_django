@@ -9,11 +9,12 @@
             <form action="" enctype="multipart/form-data" method="post">
                 {{ form.as_p }}
                 {% csrf_token %}
-                <p class='submit-row'><input type="submit" value="Загрузить"></p>
+                <p class='submit-row'><input type="submit" value="Получить"></p>
             </form>
         </div>
     </div>
     <script>
         window.date_limits = JSON.parse("{{ date_limits|escapejs }}");
+        window.date_limits_case = "exact";
     </script>
 {% endblock %}
