@@ -31,19 +31,3 @@ LEFT JOIN amazon_analytics_requests requests -- Добавляю запроса�
 ON wrapper.request_id = requests.id
 ORDER BY diff_min_max DESC --diff_btw_max_and_min
 LIMIT {limit};
-
-
--- SELECT  tops.request_id 
---        ,tops.position AS pos 
---        ,reports.id    AS report_id
--- FROM amazon_analytics_requesttops tops
--- RIGHT OUTER JOIN amazon_analytics_reports reports
--- ON tops.report_id = reports.id AND reports.period_date >= '2021-02-27' AND reports.period_date <= '2021-03-13'
--- WHERE tops.request_id = 809019
--- ORDER BY pos asc nulls first 
--- LIMIT 10;
-
--- SELECT  *
--- FROM amazon_analytics_reports reports
--- LEFT JOIN amazon_analytics_requesttops tops
--- ON reports.id = tops.report_id AND tops.request_id = 809019;

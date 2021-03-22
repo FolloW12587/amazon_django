@@ -12,15 +12,21 @@
 </head>
 <body>
 <div id="header">
-    <span class="logo">Amazon analytics</span>
+    <div id="branding">
+        <h1 id="site-name"><a href="/">Amazon analytics</a></h1>
+    </div>
     <span class="user-tools">
-        Welcome <strong>{{ request.user }}</strong> / {% if request.user.is_staff %}<a href='/admin'>Go to admin panel</a> / {% endif %} <a href="{% url "logout" %}">Logout</a>
+        {% if request.user.is_authenticated %}
+            Welcome <strong>{{ request.user }}</strong> / {% if request.user.is_staff %}<a href='/admin'>Go to admin panel</a> / {% endif %} <a href="{% url "logout" %}">Logout</a>
+        {% endif %}
     </span>
 </div>
-<div class="breadcrumbs">
-    <a href="/">Получить отчет</a>
-    / <a href="/upload">Загрузить отчет</a>
-</div>
+{% if request.user.is_authenticated %}
+    <div class="breadcrumbs">
+        <a href="/">Получить отчет</a>
+        / <a href="/upload">Загрузить отчет</a>
+    </div>
+{% endif %}
 <div id="content">
     {% block content %}
     {% endblock %}
